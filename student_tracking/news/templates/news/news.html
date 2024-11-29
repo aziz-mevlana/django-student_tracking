@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} News {% endblock %}
+
+{% block content %}
+
+<h1>News</h1>
+<h2 class="myNewsTitle">Haberler</h2>
+                <hr>
+                {% for new in news %}
+                    {% if new.is_active %}
+                        {% include 'partials/_card.html' %} 
+                    {% endif %}
+                {% endfor %}
+
+{% endblock %}

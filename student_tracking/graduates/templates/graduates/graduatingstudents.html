@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Graduating Students {% endblock %}
+
+{% block content %}
+<div class="row my-3">
+    <div class="col-3">
+        {% include 'partials/_categories.html' %}
+    </div>
+    <div class="col-9">
+        <h2 class="myNewsTitle">Mezunlar</h2>
+                {% for graduate in graduates %}
+                    {% include 'partials/_graduates_card.html' %}
+                {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

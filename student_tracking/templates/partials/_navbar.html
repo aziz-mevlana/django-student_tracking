@@ -1,0 +1,25 @@
+{% load static %}
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg bg-secondary shadow-lg">
+    <div class="container mx-5">
+        <img src="{% static 'img/bst-logo.png' %}" alt="Logo" width="7%" height="auto" class="d-inline-block align-text-top logo-shadow">
+        <a class="navbar-brand" href="{% url 'home' %}">BST Akademi</a>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a href="{% url 'news' %}" class="nav-link">Haberler</a>
+            </li>
+            <li class="nav-item">   
+                <a href="{% url 'graduates' %}" class="nav-link">Mezunlar</a>
+            </li>
+            <li class="nav-item">   
+                <a href="{% url 'deneme' %}" class="nav-link">Deneme</a>
+            </li>
+            <li class="nav-item">   
+                <a href="{% url 'post' %}" class="nav-link">Blog</a>
+            </li>
+            <li class="nav-item">   
+                <a href="{% url 'student_projects' %}" class="nav-link">Proje</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- ======================================================================================================================================== -->
