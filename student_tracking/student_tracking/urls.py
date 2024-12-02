@@ -26,7 +26,8 @@ urlpatterns = [
     path('', include('news.urls')),
     path('', include('graduates.urls')),
     path('', include('student_projects.urls')),
-    
+    path('account/', include('account.urls')),
+    path('chat/', include('chat.urls')),
     
     
     

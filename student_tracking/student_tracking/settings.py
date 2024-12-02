@@ -31,7 +31,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'chat',
     'news',
+    'account',
     'blog',
     'graduates',
     'student_projects',
@@ -75,7 +78,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'student_tracking.wsgi.application'
-
+# mysite/settings.py
+# Daphne
+ASGI_APPLICATION = "student_tracking.asgi.application"
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -110,13 +123,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'tr-tr'
+LANGUAGE_CODE = 'tr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Istanbul'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
