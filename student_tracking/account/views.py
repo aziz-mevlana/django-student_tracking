@@ -28,10 +28,7 @@ def register_request(request):
         return redirect("home")
     
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
-        firstname = request.POST["firstname"]
-        lastname = request.POST["lastname"]
+        username = request.POST["email"]
         password = request.POST["password"]
         repassword = request.POST["repassword"]
         
@@ -39,34 +36,18 @@ def register_request(request):
             if User.objects.filter(username=username).exists():
                 return render(request, "account/register.html", 
                 {
-                    "error": "Kullanıcı adı zaten alınmış",
+                    "error": "Email zaten alınmış",
                     "username" : username,
-                    "email" : email,
-                    "firstname" : firstname,
-                    "lastname" : lastname
                 })
             else:
-                if User.objects.filter(email=email).exists():
-                    return render(request, "account/register.html", 
-                    {
-                        "error": "Email zaten alınmış",
-                        "username" : username,
-                        "email" : email,
-                        "firstname" : firstname,
-                        "lastname" : lastname
-                    })
-                else:
-                    user = User.objects.create_user(username=username, email=email, password=password, first_name=firstname, last_name=lastname)
-                    user.save()
-                    return redirect("login")
+                user = User.objects.create_user(username=username, password=password)
+                user.save()
+                return redirect("login")
         else:
             return render(request, "account/register.html", 
             {
                 "error": "Şifreler eşleşmiyor",
                 "username" : username,
-                "email" : email,
-                "firstname" : firstname,
-                "lastname" : lastname
             })
     
     
@@ -76,3 +57,8 @@ def register_request(request):
 def logout_request(request):
     logout(request)
     return redirect("home")
+
+
+
+def profile_request(request):
+    return render(request, "account/profile.html")
