@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from .models import Profile
 
 
 def login_request(request):
@@ -12,7 +14,6 @@ def login_request(request):
         password = request.POST["password"]
         
         user = authenticate(request, username=username, password=password)
-        
         if user is not None:
             login(request, user)
             return redirect("home")
@@ -42,6 +43,13 @@ def register_request(request):
             else:
                 user = User.objects.create_user(username=username, password=password)
                 user.save()
+                send_mail(
+                            "Subject here",
+                            "Here is the message.",
+                            "aziz-alim@hotmail.com",
+                            [user.username],
+                            fail_silently=False,
+                          )
                 return redirect("login")
         else:
             return render(request, "account/register.html", 

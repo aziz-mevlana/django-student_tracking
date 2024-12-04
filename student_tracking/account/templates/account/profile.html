@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'account/css/style.css' %}">
+{% endblock %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+<div class="container my-4 shadow">
+    <div class="row justify-content-center align-items-center px-4 position-relative ">
+        <div class="col position-relative my-4">
+            <img src="{{ user.profile.image.url }}" class="rounded-circle rounded mx-auto d-block my-4" alt="profile_pics">
+            <button class="btn btn-primary position-absolute top-0 end-0">resim</button>
+            <div class="input-group justify-content-center mt-4 mb-4">
+                <span class="input-group-text">@</span>
+                <input class="input" aria-label="{{ user.name }}" aria-describedby="basic-addon1" type="text"
+                    placeholder="{{ user.username }}">
+            </div>
+        </div>
+        <div class="col">
+
+            <div class="row">
+                <div class="col form-floating mb-3">
+                    <span>First Name</span>
+                    <input class="input" type="text" placeholder="{{ user.first_name }}">
+                </div>
+                <div class="col form-floating mb-3 me-3">
+                    <span>Last Name</span>
+                    <input class="input" type="text" placeholder="{{ user.last_name }}">
+                </div>
+            </div>
+            <div>
+                <div class="row  justify-content-start ms-auto me-5">
+                    <span>Email</span>
+                    <input class="input" type="email" placeholder="{{ user.email }}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
+{% block js_file %}
+<script src="{% static 'news/js/script.js' %}"></script>
+{% endblock %}
