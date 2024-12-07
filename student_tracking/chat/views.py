@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 from .models import Room
 from .models import Message
 
+
+
+def widget_chat(request):
+    # Yazışma sayfasının içeriği
+    return render(request, 'widget_chat.html')
+
 def c_index(request):
     users=User.objects.all().exclude(username=request.user)
 
