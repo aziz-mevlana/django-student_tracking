@@ -30,7 +30,7 @@ function getBase64(file){
   }
 }
 
-
+conversation.scrollTop=conversation.scrollHeight
 
 chatSocket.onmessage=function(e) {
     const data = JSON.parse(e.data)
@@ -75,6 +75,7 @@ chatSocket.onmessage=function(e) {
 
 
     conversation.innerHTML+=message
+    conversation.scrollTop=conversation.scrollHeight
 };
 
 chatSocket.onclose=function(e) {

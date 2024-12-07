@@ -6,7 +6,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default="default.jpg", upload_to="profile_pics")
     token = models.CharField(max_length=6 ,null=True)
-
+    is_verified = models.BooleanField(default=False)
 
     def generate_random_token(self):
         # 6 haneli rastgele bir sayı oluştur
