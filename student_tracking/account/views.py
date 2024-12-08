@@ -34,7 +34,7 @@ def login_request(request):
         return redirect("home")
 
     if request.method == "POST":
-        username = request.POST["username"]
+        username = request.POST["email"]
         password = request.POST["password"]
         
         user = authenticate(request, username=username, password=password)
