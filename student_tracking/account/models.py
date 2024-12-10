@@ -7,6 +7,8 @@ class Profile(models.Model):
     image = models.ImageField(default="default.jpg", upload_to="profile_pics")
     token = models.CharField(max_length=6 ,null=True)
     is_verified = models.BooleanField(default=False)
+    first_name = models.CharField(max_length=16, null=True)
+    last_name = models.CharField(max_length=16, null=True)
 
     def generate_random_token(self):
         # 6 haneli rastgele bir sayı oluştur

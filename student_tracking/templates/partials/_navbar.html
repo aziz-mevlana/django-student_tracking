@@ -1,52 +1,46 @@
 {% load static %}
-<nav class="navbar navbar-dark bg-primary navbar-expand-lg bg-secondary shadow-lg">
-    <div class="container ">
-        <img src="{% static 'img/bst-logo.png' %}" alt="Logo" width="7%" height="auto" class="d-inline-block align-text-top logo-shadow">
-        <a class="navbar-brand fs-3 fw-semibold" href="{% url 'home' %}">BST Akademi</a>
-        <ul class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient shadow">
+    <div class="container-fluid">
+        <!-- Logo kısmı -->
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+            <img src="{% static 'img/bst-logo.png' %}" alt="BST Akademi Logo" class="logo-shadow">
+            <span class="fs-4 fw-bold">BST Akademi</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
-        </ul>
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item fw-normal fs-5 px-2">
-                    <a href="{% url 'news' %}" class="nav-link">Haberler</a>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto fs-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'news' %}">Haberler</a>
                 </li>
-                <li class="nav-item fw-normal fs-5 px-2">   
-                    <a href="{% url 'graduates' %}" class="nav-link">Mezunlar</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'post' %}">Blog</a>
                 </li>
-                <li class="nav-item fw-normal fs-5 px-2">   
-                    <a href="{% url 'c_index' %}" class="nav-link">Mesajlaşma</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_projects' %}">Projeler</a>
                 </li>
-                <li class="nav-item fw-normal fs-5 px-2">   
-                    <a href="{% url 'post' %}" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item fw-normal fs-5 px-2">   
-                    <a href="{% url 'student_projects' %}" class="nav-link">Proje</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'graduates' %}">Mezunlar</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto">
-                {% if user.is_authenticated %}
-                    <li class="nav-item row">
-                        <a href="#" class="">
-                            <img src="{{ user.profile.image.url }}" width="55" class="float-end rounded-circle border border-primary border-4">
-                        </a>
-                    </li>
-                    <li class="nav-item">   
-                        <a href="" class="nav-link fs-5">Welcome, {{ user.first_name|title }}</a>
-                    </li>
-                    <li class="nav-item align-items-center">   
-                        <a href="{% url 'logout' %}" class="nav-link fs-5  align-items-center">Logout</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item align-items-center align-items-center">
-                        <a href="{% url 'login' %}" class="nav-link fs-5 align-items-center">Login</a>
-                    </li>
-                    <li class="nav-item">   
-                        <a href="{% url 'register' %}" class="nav-link fs-5 align-items-center">Register</a>
-                    </li>
-                {% endif %}
-            </ul>
+            {% if user.is_authenticated %}
+            <!-- Dropdown Menüsü -->
+            <div class="dropdown ms-auto">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{ user.profile.image.url }}" alt="Profil Fotoğrafı" class="rounded-circle border border-primary border-2 mx-3" style="width: 70px; height: 70px; object-fit: cover;">
+                    <span class="text-white fs-4 btn btn-primary ">Profil</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="{% url 'profile' %}">Profilim</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">Çıkış Yap</a></li>
+                </ul>
+            </div>
+            {% else %}
+            <!-- Giriş Yap Butonu -->
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg ms-auto">Giriş Yap</a>
+            {% endif %}
         </div>
     </div>
 </nav>
-<!-- ======================================================================================================================================== -->

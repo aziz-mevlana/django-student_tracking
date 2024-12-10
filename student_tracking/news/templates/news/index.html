@@ -2,32 +2,26 @@
 {% load static %}
 
 {% block css_files %}
-<link rel="stylesheet" href="{% static 'news/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 {% endblock %}
 
 {% block title %} Home {% endblock %}
 
 {% block content %}
-<div>
-    <div class="container my-4  mySize">
-        <div class="row">
-            <div class="col-6">
-                {% include 'partials/_carousel.html' %}
-            </div>
-            <div class="col-6">
-                <div>
-                    <h2 class="myNewsTitle">Haberler</h2>
-                    <hr>
-                    {% for new in news %}
-                        {% if new.is_home and new.is_active %}
-                            {% include 'partials/_card.html' %} 
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+
+{% include 'partials/_carousel.html' %}
+
+<div class="container my-5">
+    <div class="row g-4">
+        {% for new in news %}
+            {% if new.is_home and new.is_active %}
+                {% include 'partials/_card.html' %}
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
+
+
 {% endblock %}
 {% block js_file %}
 <script src="{% static 'news/js/script.js' %}"></script>

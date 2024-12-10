@@ -34,10 +34,10 @@ def login_request(request):
         return redirect("home")
 
     if request.method == "POST":
-        username = request.POST["email"]
+        email = request.POST["email"]
         password = request.POST["password"]
         
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=email, password=password)
         if user is not None:
             login(request, user)
             return redirect ("verify_account")
@@ -53,19 +53,19 @@ def register_request(request):
         return redirect("home")
     
     if request.method == "POST":
-        username = request.POST["email"]
+        email = request.POST["email"]
         password = request.POST["password"]
         repassword = request.POST["repassword"]
         
         if password == repassword:
-            if User.objects.filter(username=username).exists():
+            if User.objects.filter(email=email).exists():
                 return render(request, "account/register.html", 
                 {
                     "error": "Email zaten alınmış",
-                    "username" : username,
+                    "email" : email,
                 })
             else:
-                user = User.objects.create_user(username=username, password=password)
+                user = User.objects.create_user(username=email, email=email, password=password)
                 user.save()
                 profile = Profile.objects.get(user=user)  # 'user' burada bir User nesnesidir
                 token = profile.token  # Profile nesnesindeki token alanına erişim
@@ -74,7 +74,7 @@ def register_request(request):
                             "Subject here",
                             "Here is the {}.".format(token),
                             "aziz-alim@hotmail.com",
-                            [user.username],
+                            [user.email],
                             fail_silently=False,
                           )
                 return redirect("login")
@@ -82,7 +82,7 @@ def register_request(request):
             return render(request, "account/register.html", 
             {
                 "error": "Şifreler eşleşmiyor",
-                "username" : username,
+                "email" : email,
             })
     
     
