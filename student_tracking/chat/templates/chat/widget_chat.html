@@ -1,19 +1,31 @@
-<div id="chat-widget" style="position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; background: white; border: 1px solid #ccc; border-radius: 8px; display: none; z-index: 1000;">
-    <div style="background: #007bff; color: white; padding: 10px; border-radius: 8px 8px 0 0;">
-        Chat
-        <button id="close-chat" style="float: right; background: none; border: none; color: white;">X</button>
+<div id="chat-widget"
+    style="position: fixed; bottom: 0px; right: 0px; width: 82vh; height: 65vh; background: white; border: 1px solid #ccc; border-radius: 8px; display: none; z-index: 1000;">
+    <!-- Başlık Alanı -->
+    <div id="close-chat"
+        style="background: #ffffff; color: rgb(0, 0, 0); padding: 5px; border-radius: 8px 8px 0 0; display: flex; justify-content: center; align-items: center;">
+        <span>Mesajlaşma</span>
     </div>
-    <iframe src="{% url 'c_index' %}" style="width: 100%; height: 100%; border: none;"></iframe>
+    <!-- Mesajlaşma İframe -->
+    <iframe src="{% url 'c_index' %}" style="width: 100%; height: calc(100% - 40px); border: none;"></iframe>
 </div>
-<button id="open-chat" style="position: fixed; bottom: 20px; right: 20px; background: #007bff; color: white; border: none; padding: 10px; border-radius: 50%; z-index: 1000;">💬</button>
+
+<!-- Kapalı Durumda Gözüken Buton -->
+<button id="open-chat"
+    style="position: fixed; bottom: 0px; right: 0px; background: #ffffff; color: rgb(0, 0, 0); border: none; width: 40vh; padding: 10px; font-size: 16px; text-align: center; border-radius: 8px 8px 0 0; z-index: 1000; cursor: pointer;">
+    <span>Mesajlaşma</span>
+</button>
+
 <script>
     document.getElementById('open-chat').addEventListener('click', function () {
+        // Widget'i aç
         document.getElementById('chat-widget').style.display = 'block';
         this.style.display = 'none';
     });
 
     document.getElementById('close-chat').addEventListener('click', function () {
+        // Widget'i kapat
         document.getElementById('chat-widget').style.display = 'none';
         document.getElementById('open-chat').style.display = 'block';
     });
+
 </script>
